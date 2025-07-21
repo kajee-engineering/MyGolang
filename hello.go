@@ -8,6 +8,7 @@ import (
 	"time"
 )
 
+// ジェネリクス
 func Sum[T int | float32 | float64](nums []T) T {
 
 	return 0
