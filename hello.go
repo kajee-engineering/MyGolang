@@ -42,7 +42,7 @@ func main() {
 	//}
 
 	type Book struct {
-		Title      string    `json:"title"`
+		Title      string    `json:"title"` // jsonタグ。jsonの情報をフィールドにマッピングできる
 		Author     string    `json:"author"`
 		Publisher  string    `json:"publisher"`
 		ReleasedAt time.Time `json:"released_at"`
@@ -56,6 +56,10 @@ func main() {
 	}
 	d := json.NewDecoder(f)
 	var b Book
+	fmt.Println(b)
 	d.Decode(&b)
 	fmt.Println(b)
+
+	// A.14 ライブラリのインポート
+	// go get コマンドはno longer suppoertedのため installコマンドで実行
 }
