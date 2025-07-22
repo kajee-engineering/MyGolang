@@ -26,4 +26,17 @@ func main() {
 		fmt.Println(x) // CamelCaseまたはcamelCaseとする。先頭が大文字なのでパッケージ外からも使えるパブリックな要素。なお先頭が小文字の場合はプライベートな要素である。
 	}
 	fmt.Println(x) // ここの位置では必ず1になる
+
+	/* ポインター
+	変数を作ってデータを格納すると、その変数はOSからもらったメモリのどこかに保存される。
+	メモリにはアドレスがあります。そのアドレスを扱う機能がポインターである。
+	Goのポインターは次のように使う。
+	- 変数のポインター型には*（アスタリスク）を前置する
+	- 既存の変数のポインターを取り出すには&を利用する
+	*/
+	var i int = 10 // ポインターの参照先となる普通の変数
+	var p *int     // ポインターを格納する変数（デフォルトはnil）
+	// fmt.Println(*p) // nilの参照先を取り出すと "panic: runtime error: invalid memory address or nil pointer dereference" が発生する
+	p = &i // pにはiのアドレスが入る
+	fmt.Println(p)
 }
