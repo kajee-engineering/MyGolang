@@ -1,6 +1,9 @@
 package main
 
-import "fmt" // パッケージ名はすべて小文字でつける
+import (
+	"fmt"
+	"strconv"
+) // パッケージ名はすべて小文字でつける
 
 func main() {
 	fmt.Println("Hello, World!")
@@ -27,6 +30,35 @@ func main() {
 	}
 	fmt.Println(x) // ここの位置では必ず1になる
 
+	// 空行なしで関数や型の宣言の直前につけると、
+	// それらの要素の説明として利用される
+	//func CommentedFunc() {
+	//}
+
+	//var i int = 123
+	// 数値同士の変換はかっこでくくり型を前置する
+	//var f float64 = float64(i)
+	// 64ビットOSで64ビットのintと、int64の明示的な変換が必要
+	//var i64 int64 = int64(i)
+	// boolへの変換は比較演算子を使う
+	//var b bool = i != 0
+
+	// 文字列との変換はstrconvパッケージを利用
+	in := 12345
+	fmt.Println(in)
+	//strconvの数値入力はint64, uint64, float64なので
+	//
+	s := strconv.FormatInt(int64(in), 10) // 10進数
+	fmt.Println(s)                        // "12345"
+
+	// Parse系はエラー変換失敗時にエラーを返す
+	// 成功時のerrはnil
+	f, err := strconv.ParseFloat("12.3456", 64)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(f)
+
 	/* ポインター
 	変数を作ってデータを格納すると、その変数はOSからもらったメモリのどこかに保存される。
 	メモリにはアドレスがあります。そのアドレスを扱う機能がポインターである。
@@ -39,4 +71,5 @@ func main() {
 	// fmt.Println(*p) // nilの参照先を取り出すと "panic: runtime error: invalid memory address or nil pointer dereference" が発生する
 	p = &i // pにはiのアドレスが入る
 	fmt.Println(p)
+
 }
