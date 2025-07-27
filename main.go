@@ -85,4 +85,46 @@ func main() {
 		他の言語の中には未初期化の変数はバグの原因になったり、セキュリティホールの原因となるものもある（未初期化変数利用とバッファオーバーラン（確保した以上のメモリにアクセスしてしまう不具合））
 		Goはどちらも行えないようになっている。
 	*/
+
+	// Goは配列よりスライスを多用する。
+	// Goの配列は固定長。一方、スライスは不定。
+	// あまり使わない配列
+	var nums [3]int = [3]int{1, 2, 3}
+	fmt.Println(nums)
+	fmt.Println(nums[0], nums[1], nums[2])
+	fmt.Println(len(nums))
+
+	// スライスの変数宣言
+	var nums1 []int
+	fmt.Println(nums1)
+	fmt.Println(nums1 == nil) // ゼロ値はnilなのでtrue
+
+	num2 := []int{1, 2, 3}
+	fmt.Println(num2)
+	num3 := nums[0:2] // 配列からスライス作成
+	fmt.Println(num3) // [1 2]
+	num4 := num3[1:3] // [2 3] 元の配列numsを参照している
+	fmt.Println(num4)
+
+	// 配列と同じようにブラケットで要素取得可能
+	// 範囲外アクセスはパニック。セキュリティホールの原因になり得るため、安全性の高い言語であるGoはエラーとして扱う。
+	fmt.Println(num2[1]) // 2
+	//fmt.Println(num2[3]) // panic: runtime error: index out of range [3] with length 3
+
+	// 要素の割り当ても可能
+	num2[0] = 100
+	fmt.Println(num2)
+
+	// 長さも取得可能
+	fmt.Println(len(num2)) // 3
+
+	// スライスに要素を追加
+	// 再代入が必要
+	num2 = append(num2, 4)
+	fmt.Println(num2) // [100 2 3 4]
+	// 再代入しない場合
+	fmt.Println(append(num2, 50)) // [100 2 3 4 50] の出力になるが...
+	// append関数に渡す引数は追加されない。
+	fmt.Println(num2) // [100 2 3 4]
+
 }
