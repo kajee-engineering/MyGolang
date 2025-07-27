@@ -162,4 +162,21 @@ func main() {
 	status, exist = hs[200]
 	fmt.Println(status, exist)
 
+	// if文/if else/elseの基本的な書き方
+	statusCode := 200
+	if statusCode == 200 {
+		fmt.Println("no error")
+	} else if statusCode < 500 {
+		fmt.Println("client error")
+	} else {
+		fmt.Println("server error")
+	}
+
+	// データ取得とチェックを同時に行う
+	if result, ok := hs[300]; ok {
+		fmt.Println("result is :", result)
+	} else {
+		fmt.Println("result is :", result)
+		fmt.Println("ok is :", ok)
+	}
 }
