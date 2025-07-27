@@ -127,4 +127,39 @@ func main() {
 	// append関数に渡す引数は追加されない。
 	fmt.Println(num2) // [100 2 3 4]
 
+	// 辞書、ハッシュなどとも呼ばれるデータ構造はGoではmapと呼ぶ
+	// スライスと同様に複合型である
+	// 数字がキーで値が文字列のマップ
+	// HTTPステータスを格納
+	hs := map[int]string{
+		200: "OK",
+		404: "Not found",
+	}
+	fmt.Println(hs)
+	fmt.Println(hs[200])
+
+	// makeで作る
+	author := make(map[string][]string)
+	fmt.Println(author == nil) // 空のmapが存在するのでfalse
+
+	// ブラケットで要素アクセス
+	author["Go"] = []string{"Robert Griesemer", "Rob Pike", "Ken Thompson"}
+	fmt.Println(author)
+
+	// データ取得
+	status := hs[200]
+	fmt.Println(status) // "OK"
+
+	// 存在しない要素にアクセスするとゼロ値
+	fmt.Println(hs[0]) // string型のゼロ値は空文字
+
+	// あるかどうかの情報も一緒に取得
+	status, exist := hs[304]
+	// status = ""
+	// exist = false
+	fmt.Println(status, exist)
+
+	status, exist = hs[200]
+	fmt.Println(status, exist)
+
 }
