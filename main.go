@@ -230,4 +230,22 @@ func main() {
 		fmt.Println(i, "回目")
 	}
 
+	// switch文
+	w := []string{"running", "run", "walk", "stop", "stop", "sleep"}
+	for _, s := range w {
+		switch s {
+		case "running":
+			fallthrough
+		case "run":
+			fmt.Println("run")
+			fallthrough
+		case "r":
+			fmt.Println("r")
+		case "stop":
+			fmt.Println("stop")
+		default:
+			fmt.Println("other...")
+		}
+	}
+
 }
