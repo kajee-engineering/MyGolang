@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"strings"
+	"time"
 ) // パッケージ名はすべて小文字でつける
 
 func main() {
@@ -179,4 +181,53 @@ func main() {
 		fmt.Println("result is :", result)
 		fmt.Println("ok is :", ok)
 	}
+
+	// スライスやマップの各要素に対してループ
+	scketches := []string{"Dead Parrot", "Killer joke", "Spanish Inquisition", "Spam"}
+	for i, s := range scketches {
+		fmt.Println(i, s)
+	}
+
+	// 1つ変数だけ書けばインデックスのみを受け取れる
+	for i := range scketches {
+		fmt.Println(i)
+	}
+
+	// ブランク識別子でインデックスを読み飛ばして値だけを受け取れる
+	for _, s := range scketches {
+		fmt.Println(s)
+	}
+
+	fmt.Println("---------------------")
+	for _, s := range scketches {
+		if strings.HasPrefix(s, "K") {
+			continue
+		}
+
+		if strings.HasSuffix(s, "n") {
+			break
+		}
+		fmt.Println(s)
+	}
+
+	// 回り続けるループ
+	counter := 0
+	for counter < 10 {
+		fmt.Println("ブール値がtrueの間は回り続けるループ")
+		counter += 1
+	}
+
+	end := time.Now().Add(time.Second)
+	for {
+		fmt.Println("breakやreturnで抜けないと終わらないループ")
+		if end.Before(time.Now()) {
+			break
+		}
+	}
+
+	// 伝統的なforループ
+	for i := 0; i < 10; i++ {
+		fmt.Println(i, "回目")
+	}
+
 }
