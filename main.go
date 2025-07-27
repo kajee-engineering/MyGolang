@@ -1,11 +1,40 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"strconv"
 	"strings"
 	"time"
 ) // パッケージ名はすべて小文字でつける
+
+// 関数定義
+// 同じ型が続く場合は、後ろにあるものが前にあるものとして扱われる。
+// 関数の中に関数は定義できない。
+func calc(x, y int) int {
+	return x + y
+}
+
+// calcAge 与えられた引数が古い間は返り値をインクリメントする
+// 返り値に名前をつける。複数になる場合は、かっこでくくる。
+func calcAge(y int, m time.Month, d int) (age int, err error) {
+
+	b := time.Date(y, m, d, 0, 0, 0, 0, time.Local)
+	fmt.Println(b)
+	n := time.Now()
+	if b.After(n) {
+		err = errors.New("誕生日が未来です")
+		return
+	}
+	for {
+		b = time.Date(y+age+1, m, d, 0, 0, 0, 0, time.Local)
+		if b.After(n) {
+			return
+		}
+		age++
+	}
+
+}
 
 func main() {
 	fmt.Println("Hello, World!")
@@ -217,13 +246,13 @@ func main() {
 		counter += 1
 	}
 
-	end := time.Now().Add(time.Second)
-	for {
-		fmt.Println("breakやreturnで抜けないと終わらないループ")
-		if end.Before(time.Now()) {
-			break
-		}
-	}
+	//end := time.Now().Add(time.Second)
+	//for {
+	//	fmt.Println("breakやreturnで抜けないと終わらないループ")
+	//	if end.Before(time.Now()) {
+	//		break
+	//	}
+	//}
 
 	// 伝統的なforループ
 	for i := 0; i < 10; i++ {
@@ -248,4 +277,23 @@ func main() {
 		}
 	}
 
+	// 名前付き関数はトップレベルでしか作れないが、無名関数は関数の中でも作れる。
+	mf := func(x, y int) int {
+		return x + y
+	}
+
+	// 無名関数の呼び出し
+	fmt.Printf("%d\n", mf(10, 20)) // "30"
+
+	// 無名関数として定義したものを渡せる
+	doCalc(10, 20, mf)
+	// 引数内で無名関数を定義できる
+	doCalc(10, 20, func(a, b int) int {
+		return 1
+	})
+}
+
+func doCalc(x, y int, f func(int, int) int) {
+	fmt.Println(f(1, 1))
+	fmt.Println(x, y)
 }
