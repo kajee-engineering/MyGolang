@@ -84,7 +84,7 @@ func main() {
 	in := 12345
 	fmt.Println(in)
 	// strconvの数値入力はint64, uint64, float64なので
-	//
+	// それ以外の変数を使うときは型変換が必要
 	s := strconv.FormatInt(int64(in), 10) // 10進数
 	fmt.Println(s)                        // "12345"
 
