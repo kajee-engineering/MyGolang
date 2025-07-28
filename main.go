@@ -39,6 +39,12 @@ func calcAge(y int, m time.Month, d int) (age int, err error) {
 func main() {
 	fmt.Println("Hello, World!")
 
+	age, err := calcAge(2000, time.April, 1)
+	if err != nil {
+		fmt.Println("err", err)
+	}
+	fmt.Println(age, "years old")
+
 	// Goは型を名前の後ろに定義する。省略可能性が高いものほど後ろになる。
 	// var num1 int = 123
 
