@@ -1,1 +1,38 @@
 package main
+
+import (
+	"fmt"
+	"io"
+	"net/http"
+	"os"
+
+	"github.com/rs/zerolog/log"
+)
+
+// main 固定長の文字列を返すだけのシンプルなWebサービス
+func main() {
+	// ①
+	http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "Hello World")
+		log.Info().Msg("receive hello world request")
+	})
+
+	// ②
+	fmt.Println("Listening on port 8080")
+
+	// ③
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		// ④
+		fmt.Fprintf(os.Stderr, "")
+		io.WriteString(os.Stderr, err.Error())
+		os.Exit(1)
+	}
+
+	// ① まず、URLごとの処理を登録する。ここでは/heeloというパスに文字列を返す処理を登録している。
+	// ② Webサービスがどこで起動しているかわからないとテストするのに不便なので画面にテキストを表示する。
+	// ③ ここではhttpパッケージのListenAndServe()関数を使ってサーバを起動する。
+	// ④ もし、オープンしようとしているポートが占有されている場合は即座にエラーが返ってきてくる。このエラーを表示してプログラムをクローズさせる、
+
+	// http://localhost:8080/helloにアクセスするとテキストが表示される。
+}
