@@ -54,7 +54,7 @@ func main() {
 
 	// 変数宣言と代入を同時に行う短縮記法
 	// ただし関数内部でのみ利用可能
-	//num3 := 123
+	// num3 := 123
 
 	// Goは宣言だけして未使用な変数がコードに残っているとエラーになるためコメントアウトしている。
 
@@ -62,28 +62,28 @@ func main() {
 	if true {
 		// コードブロックの内側で変数 x を再宣言できる
 		// 外側の x には影響を及ぼさない
-		x := 2         // シャドーイングされた値
+		x := 2         // シャドーイングされた値(よく見るとGolandが外側の x と違う色で表示しており、視覚的に区別してくれている。)
 		fmt.Println(x) // CamelCaseまたはcamelCaseとする。先頭が大文字なのでパッケージ外からも使えるパブリックな要素。なお先頭が小文字の場合はプライベートな要素である。
 	}
 	fmt.Println(x) // ここの位置では必ず1になる
 
 	// 空行なしで関数や型の宣言の直前につけると、
 	// それらの要素の説明として利用される
-	//func CommentedFunc() {
-	//}
+	// func CommentedFunc() {
+	// }
 
-	//var i int = 123
+	// var i int = 123
 	// 数値同士の変換はかっこでくくり型を前置する
-	//var f float64 = float64(i)
+	// var f float64 = float64(i)
 	// 64ビットOSで64ビットのintと、int64の明示的な変換が必要
-	//var i64 int64 = int64(i)
+	// var i64 int64 = int64(i)
 	// boolへの変換は比較演算子を使う
-	//var b bool = i != 0
+	// var b bool = i != 0
 
 	// 文字列との変換はstrconvパッケージを利用
 	in := 12345
 	fmt.Println(in)
-	//strconvの数値入力はint64, uint64, float64なので
+	// strconvの数値入力はint64, uint64, float64なので
 	//
 	s := strconv.FormatInt(int64(in), 10) // 10進数
 	fmt.Println(s)                        // "12345"
