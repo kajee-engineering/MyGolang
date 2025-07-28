@@ -105,7 +105,7 @@ func main() {
 		- 既存の変数のポインターを取り出すには&を利用する
 	*/
 	var i int = 10 // ポインターの参照先となる普通の変数
-	var p *int     // ポインターを格納する変数（デフォルトはnil）
+	var p *int     // ポインターを格納する変数（デフォルトはnil）。この場合、ポインタの参照先がint型なので*intになる。stringであれば*stringになる。
 	// fmt.Println(*p) // nilの参照先を取り出すと "panic: runtime error: invalid memory address or nil pointer dereference" が発生する
 	p = &i // pにはiのアドレスが入る
 	fmt.Println(p)
